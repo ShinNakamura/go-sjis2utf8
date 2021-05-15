@@ -21,6 +21,6 @@ mkdir bin
 $0 /path/to/sjisFile /path/to/utf8File
 ```
 
-`/path/to/sjisFile` は存在しないとエラー
+`/path/to/sjisFile` は存在しないとエラー。Glob可だが、展開後の最初のファイルしか採用しないことに注意
 
 `/path/to/utf8File` はファイルは新規作成／上書き。事前にディレクトリを作成しておくこと

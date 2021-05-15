@@ -7,15 +7,23 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 
 	"golang.org/x/text/encoding/japanese"
 	"golang.org/x/text/transform"
 )
 
 func main() {
-	inf := os.Args[1]
-	outf := os.Args[2]
+	infGlob := os.Args[1] // glob が渡されたら展開して最初のファイルだけ採用
+	outf := os.Args[2] // glob 不可
+
+	infs, err := filepath.Glob(infGlob)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// ShiftJISファイルを開く
+	inf := infs[0]
 	sjisFile, err := os.Open(inf)
 	defer sjisFile.Close()
 	if err != nil {
